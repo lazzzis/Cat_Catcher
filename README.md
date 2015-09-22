@@ -2,7 +2,7 @@
 
 About:
 ====
-Download a picture about with the given size from http://placekitten.com/
+Download a picture about cat with the given size from http://placekitten.com/
 
 How to use:
 ====
