@@ -8,7 +8,7 @@ How to use:
 ====
 3  Arguments:
 
-* The width of the picture  # required
+* The width of the picture # required
 * The height of the picture  # required
 * The filename of the picture  # optional
 
@@ -21,7 +21,7 @@ Example:
 python3 dl.py 500 600   
 ```
 A picture with the size of 500 * 600 will be downloaded on the current folder <br>
-![eg.jpg](/screenshots/eg.jpg) <br>
+![alt text](http://placekitten.com/500/600) <br>
 If there're no picture with the given size, a warning will be printed: <br>
 ```
 No such picture with the given size
