@@ -8,9 +8,9 @@ How to use:
 ====
 3  Arguments:
 
-* The width of the picture # required
-* The height of the picture  # required
-* The filename of the picture  # optional
+* The width of the picture `` ```` ``# required
+* The height of the picture  `` ```` ``# required
+* The filename of the picture  `` ```` ``# optional
 
 If the third argument is not provided, the picture will be download on the current folder.
 And the file name will be named with [width]*[height].jpg as default
