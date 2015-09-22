@@ -18,7 +18,7 @@ def save_pic(filename, info):
 
 
 def get_pic_url(html):
-    """This function is temporary useless
+    """This function is temporarily useless
     """
     p = re.compile('src="([^"]*)')
     return p.findall(p.findall(html))
