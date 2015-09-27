@@ -24,14 +24,7 @@ def get_pic_url(html):
     return p.findall(p.findall(html))
 
 
-"""3 arguments are needed
-The first one and second one are the width and height of the picture respectively
-The third one is the filename and this is optional. If the second one is not provided, the pic will save on the current
-folder
-"""
-if __name__ == '__main__':
-    try:
-        width, height = sys.argv[1], sys.argv[2]
+def dl_pic(width, height):
         html = get_url_html("http://placekitten.com/" + width + "/" + height)
         if html == b'':
             print("No such picture with the given size " + width + "*" + height)
@@ -40,5 +33,15 @@ if __name__ == '__main__':
             save_pic(filename, html)
             print("The picture is downloaded successfully!")
 
+
+"""3 arguments are needed
+The first one and second one are the width and height of the picture respectively
+The third one is the filename and this is optional. If the second one is not provided, the pic will save on the current
+folder
+"""
+if __name__ == '__main__':
+    try:
+        width, height = sys.argv[1], sys.argv[2]
+        dl_pic(width, height)
     except IndexError:
         print("The program can't work because it need at lease two argumentss!")
