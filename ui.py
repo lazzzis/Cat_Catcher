@@ -6,11 +6,14 @@ import tkinter.messagebox as messagebox
 import os.path
 import dl
 
+
 def start_dl(width, height, dir):
     if dir and dir[-1] != os.sep:
         dir = dir + os.sep
     if dl.dl_pic(width, height, dir):
         messagebox.showinfo('Cat_Catcher', 'Successfully downloaded at ' + dir, parent=master)
+    else:
+        messagebox.showwarning('Cat_Catcher', 'No such picture with the given size ' + e1.get() + ' * ' + e2.get())
 
 
 def center_window(root, width, height):
@@ -25,10 +28,11 @@ def center_window(root, width, height):
 
 
 def get_save_dir():
-    fileName = filedialog.askdirectory()
-    print(fileName)
-    if fileName: # fileName is not none or ''
-        file_save_pos.insert(0, fileName)
+    file_name = filedialog.askdirectory()
+    # print(fileName)
+    if file_name: # fileName is not none or ''
+        file_save_pos.delete(0, tk.END)
+        file_save_pos.insert(0, file_name)
 
 
 master = tk.Tk()
