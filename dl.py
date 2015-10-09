@@ -24,14 +24,16 @@ def get_pic_url(html):
     return p.findall(p.findall(html))
 
 
-def dl_pic(width, height):
+def dl_pic(width, height, dir=''):
         html = get_url_html("http://placekitten.com/" + width + "/" + height)
         if html == b'':
+            return False
             print("No such picture with the given size " + width + "*" + height)
         else:
-            filename = width + '-' + height + '.jpg' if len(sys.argv) < 4 else sys.argv[3]
+            filename = dir + width + '-' + height + '.jpg' if len(sys.argv) < 4 else sys.argv[3]
             save_pic(filename, html)
             print("The picture is downloaded successfully!")
+            return True
 
 
 """3 arguments are needed

@@ -1,10 +1,16 @@
 __author__ = 'lazzzis'
 
 import tkinter as tk
+import tkinter.filedialog as filedialog
+import tkinter.messagebox as messagebox
+import os.path
 import dl
 
-def start_dl(width, height):
-    dl.dl_pic(width, height)
+def start_dl(width, height, dir):
+    if dir and dir[-1] != os.sep:
+        dir = dir + os.sep
+    if dl.dl_pic(width, height, dir):
+        messagebox.showinfo('Cat_Catcher', 'Successfully downloaded at ' + dir, parent=master)
 
 
 def center_window(root, width, height):
@@ -18,6 +24,13 @@ def center_window(root, width, height):
     root.geometry('%dx%d+%d+%d' % (width, height, x, y))
 
 
+def get_save_dir():
+    fileName = filedialog.askdirectory()
+    print(fileName)
+    if fileName: # fileName is not none or ''
+        file_save_pos.insert(0, fileName)
+
+
 master = tk.Tk()
 master.title('cat_catcher')
 
@@ -26,15 +39,25 @@ tk.Label(master, text="length").grid(row=1, column=0)
 
 e1 = tk.Entry(master)
 e2 = tk.Entry(master)
-e1.grid(row=0, column=1, padx=10, pady=5)
-e2.grid(row=1, column=1, padx=10, pady=5)
+e1.grid(row=0, column=1, columnspan=2)
+e2.grid(row=1, column=1, columnspan=2)
 
-tk.Button(master, text="start", width=10, command=lambda :start_dl(e1.get(), e2.get()))\
-    .grid(row=3, column=0, sticky=tk.W, padx=10, pady=10)
+save_pos_label = tk.Label(master, text="save dir")
+save_pos_label.grid(row=2, column=0)
+
+file_save_pos = tk.Entry(master)
+file_save_pos.insert(0, os.path.expanduser('~'))
+file_save_pos.grid(row=2, column=1)
+
+file_save_button = tk.Button(master, text='...', command=get_save_dir)
+file_save_button.grid(row=2, column=2)
+
+tk.Button(master, text="start", width=10, command=lambda :start_dl(e1.get(), e2.get(), file_save_pos.get()))\
+    .grid(row=3, column=0, sticky=tk.W)
 tk.Button(master, text="exit", width=10, command=master.quit)\
-    .grid(row=3, column=1, sticky=tk.E, padx=10, pady=10)
+    .grid(row=3, column=2, sticky=tk.E)
 
-center_window(master, 325, 100)
+center_window(master, 385, 100)
 
 tk.mainloop()
 
