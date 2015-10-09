@@ -27,9 +27,9 @@ python3 dl.py 500 600
 python3 ui.py   
 ```
 ###&nbsp;<space>Example:
-![alt text](http://ww4.sinaimg.cn/bmiddle/e6825b3fgw1ewhc0ug2mqj209903pjrc.jpg) <br>
+![alt text](http://ww3.sinaimg.cn/bmiddle/e6825b3fgw1ewv41mvrx5j20ax03pgln.jpg) <br>
 
-A picture with the size of 500 * 600 will be downloaded on the current folder <br>
+A picture with the size of 500 * 600 will be downloaded on the chosen folder <br>
 ![alt text](http://placekitten.com/500/600) <br>
 If there're no picture with the given size, a warning will be printed: <br>
 ```
