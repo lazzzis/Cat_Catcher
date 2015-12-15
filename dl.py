@@ -1,15 +1,9 @@
 __author__ = 'lazzzis'
 
-import urllib.request
+import requests
 import sys
 import re
-
-
-def get_url_html(page):
-    req = urllib.request.Request(page)
-    req.add_header("User-Agent", "Mozilla/5.0 (X11; Fedora; Linux x86_64; rv:39.0) Gecko/20100101 Firefox/39.0")
-    response = urllib.request.urlopen(req)
-    return response.read()
+import os.path
 
 
 def save_pic(filename, info):
@@ -25,15 +19,15 @@ def get_pic_url(html):
 
 
 def dl_pic(width, height, dir=''):
-        html = get_url_html("http://placekitten.com/" + width + "/" + height)
-        if html == b'':
-            return False
-            print("No such picture with the given size " + width + "*" + height)
-        else:
-            filename = dir + width + '-' + height + '.jpg' if len(sys.argv) < 4 else sys.argv[3]
-            save_pic(filename, html)
-            print("The picture is downloaded successfully!")
-            return True
+    try:
+        r = requests.get("http://placekitten.com/" + width + "/" + height)
+    except:
+        print("No such picture with the given size " + width + "*" + height)
+        return False
+    filename = os.path.join(dir, width + '-' + height + '.jpg') if len(sys.argv) < 4 else sys.argv[3]
+    save_pic(filename, r.content)
+    print("The picture is downloaded successfully!")
+    return True
 
 
 """3 arguments are needed

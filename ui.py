@@ -8,8 +8,7 @@ import dl
 
 
 def start_dl(width, height, folder):
-    if folder and folder[-1] != os.sep:
-        folder = folder + os.sep
+    folder = os.path.join(folder, '')
     if dl.dl_pic(width, height, folder):
         messagebox.showinfo('Cat_Catcher', 'Successfully downloaded at ' + folder, parent=master)
     else:
@@ -29,10 +28,12 @@ def center_window(root, width, height):
 
 def get_save_dir():
     file_name = filedialog.askdirectory()
-    # print(fileName)
-    if file_name: # fileName is not none or ''
+    if file_name:  # fileName is not none or ''
         file_save_pos.delete(0, tk.END)
         file_save_pos.insert(0, file_name)
+    else:
+        file_save_pos.delete(0, tk.END)
+        file_save_pos.insert(0, os.path.expanduser('~'))
 
 if __name__ == '__main__':
     master = tk.Tk()
