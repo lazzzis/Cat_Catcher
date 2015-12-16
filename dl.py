@@ -7,7 +7,7 @@ import os.path
 
 
 def save_pic(filename, info):
-    with open(filename, "wb") as f:
+    with open(filename, "wb+") as f:
         f.write(info)
 
 
@@ -19,9 +19,8 @@ def get_pic_url(html):
 
 
 def dl_pic(width, height, dir=''):
-    try:
-        r = requests.get("http://placekitten.com/" + width + "/" + height)
-    except:
+    r = requests.get("http://placekitten.com/" + width + "/" + height)
+    if r.content == b'':
         print("No such picture with the given size " + width + "*" + height)
         return False
     filename = os.path.join(dir, width + '-' + height + '.jpg') if len(sys.argv) < 4 else sys.argv[3]
