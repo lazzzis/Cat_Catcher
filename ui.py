@@ -8,7 +8,7 @@ import dl
 
 
 def start_dl(width, height, folder):
-    folder = os.path.join(folder, '')
+    folder = os.path.join(folder, 'pic.jpg')
     if dl.dl_pic(width, height, folder):
         messagebox.showinfo('Cat_Catcher', 'Successfully downloaded at ' + folder, parent=master)
     else:
