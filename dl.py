@@ -5,6 +5,7 @@ from contextlib import contextmanager
 from os import chdir, getcwd
 
 import requests
+from requests.exceptions import RequestException
 
 
 def save_pic(filename, info):
@@ -31,9 +32,12 @@ def pic_url(width, height):
 
 def dl_pic(width, height, filename):
     """downloaded the picture with given size and filename"""
+    if width < 0 or height < 0:
+        raise ValueError("Positive integer is required to download picture")
+
     response = requests.get(pic_url(width, height))
     if response.content == b'':
-        raise ValueError(
+        raise RequestException(
             "No such picture with the given size {width} * {height}".format(
                 width=width, height=height))
 
@@ -50,9 +54,9 @@ def make_parser():
     """Make a argument parser for analyzing two required arguments -- width, length"""
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        'width', type=int, nargs='+', help="an integer indicating the width")
+        'width', type=int, help="an integer indicating the width")
     parser.add_argument(
-        'height', type=int, nargs='+', help="an integer indicating the height")
+        'height', type=int, help="an integer indicating the height")
     parser.add_argument(
         '--path',
         '-p',
@@ -88,8 +92,11 @@ def change_dir(target_path):
     chdir(current_path)
 
 
-if __name__ == '__main__':
+def main():
     parser = make_parser()
     args = parser.parse_args()
     with change_dir(args.path):
-        dl_pic(args.width[0], args.height[0], args.name)
+        dl_pic(args.width, args.height, args.name)
+
+if __name__ == '__main__':
+    main()
