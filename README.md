@@ -8,18 +8,43 @@ There're two ways to use it:
 =====
 
 ###1.Use command:
-3  Arguments:
-
-* The width of the picture &nbsp;<space>&nbsp;<space> # required
-* The height of the picture  &nbsp;<space>&nbsp;<space> # required
-* The filename of the picture  &nbsp;<space>&nbsp;<space> # optional
 
 If the third argument is not provided, the picture will be download on the current folder.
-And the file name will be named with [width]*[height].jpg as default
+And the file name will be named with [width]\*[height].jpg as default
+
+Usage:
+```
+usage: dl.py [-h] [--path PATH] [--name NAME] width height
+
+positional arguments:
+  width                 an integer indicating the width
+  height                an integer indicating the height
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --path PATH, -p PATH  the path storing the picture
+  --name NAME, -n NAME  the picture name
+```
 
 ###&nbsp;<space>Example:
+download a picture with given size in current directory
 ```
-python3 dl.py 500 600   
+python3 dl.py 500 600
+```
+
+download a picture and then name it as "test.jpg"
+```
+python3 dl.py 500 600 -n test.jpg
+```
+
+download the picture at home directory
+```
+python3 dl.py 500 600 -p ~
+```
+
+download a picture at home directory and name it as "test.jpg"
+```
+python3 dl.py 500 600 -p ~ -n test.jpg
 ```
 
 ###2.Use Simple GUI:
@@ -35,8 +60,3 @@ If there're no picture with the given size, a warning will be printed: <br>
 ```
 No such picture with the given size
 ```
-
-Plan:
-====
-* Enhance the gui
-* Download multiple pictures at the same time

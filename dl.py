@@ -3,6 +3,7 @@ __author__ = 'lazzzis'
 import argparse
 from contextlib import contextmanager
 from os import chdir, getcwd
+from os.path import expanduser
 
 import requests
 from requests.exceptions import RequestException
@@ -62,7 +63,7 @@ def make_parser():
         '-p',
         type=str,
         default='.',
-        help="the path storing the pictore")
+        help="the path storing the picture")
     parser.add_argument(
         '--name', '-n', type=str, default='', help="the picture name")
 
@@ -95,7 +96,7 @@ def change_dir(target_path):
 def main():
     parser = make_parser()
     args = parser.parse_args()
-    with change_dir(args.path):
+    with change_dir(expanduser(args.path)):
         dl_pic(args.width, args.height, args.name)
 
 if __name__ == '__main__':
